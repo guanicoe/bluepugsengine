@@ -9,7 +9,7 @@ import (
 	"github.com/guanicoe/bluepugsengine/session"
 )
 
-// Var decleration of the flags for user interaction
+// Var declaration of the flags for user interaction
 var (
 	TargetURL   = flag.String("u", "", "Target URL to scrap.")
 	TimeOut     = flag.Int("t", 300, "Timeout after wish the scrap will stop. This will still return the result.")

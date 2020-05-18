@@ -64,7 +64,7 @@ func RunInTerminal(fv FlagArguments) {
 			msg := fmt.Sprintf(`Data written to file "%s"`, fv.FileName)
 			log.Info(tui.Wrap(tui.GREEN, msg))
 		default:
-			msg := fmt.Sprint("Error when writting to file: ", err)
+			msg := fmt.Sprint("Error when writing to file: ", err)
 			log.Panic(tui.Wrap(tui.BACKRED, msg))
 		}
 	}

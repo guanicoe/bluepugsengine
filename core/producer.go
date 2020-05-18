@@ -28,7 +28,7 @@ type jobData struct {
 
 /*
 Dispatcher function. It first creats a go routing for each worker and sends the appropriate
-data. In then sents an embeded go routine which listens for available workers.
+data. In then sents an embedded go routine which listens for available workers.
 Once it gets one, it it grabs a work from the work queue and sends it to a worker
 */
 func startDispatcher(ctx context.Context, n int, s *jobData) {
@@ -198,7 +198,7 @@ func startProducer(param *JobParam) (JsonOutput, error) {
 				case <-ctx.Done(): // in case the context is canceled
 					return
 				case r := <-s.Result: // listening on result channel for workers' output
-					s.scrapedRecv = append(s.scrapedRecv, r.InitialURL) //We add turl the worker scraped to our recieve slice
+					s.scrapedRecv = append(s.scrapedRecv, r.InitialURL) //We add turl the worker scraped to our receive slice
 					s.scrapedRecvLen++                                  // and we increment the length
 					msg := fmt.Sprintf("Unscraped %v | scrapedRecv %v | scrapedSent %v | emails found %v               ", s.unscrapedLen, s.scrapedRecvLen, s.scrapedSentLen, len(s.emailList))
 					fmt.Printf("\r%s", msg) // lazy printing of progression on terminal
