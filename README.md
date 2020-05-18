@@ -10,6 +10,14 @@ chmod +x bluePugs
 go build -o bluePugs src/*.go && ./bluePugs
  -->
 
+
+<p align="center">
+  <img alt="BluePugs" src="https://bluepugs.ovh/static/img/bluepugs_blue.svg" height="100" />
+  
+</p>
+
+
+
 # BluePugsEngine
 
 ## Introduction
