@@ -2,6 +2,8 @@ language: go
 go:
   - "1.14"
 
+before_install:
+  - sudo apt-get -y install libzmq3-dev
 # Includes
 linux_deps: &linux_deps
   os: linux
