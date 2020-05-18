@@ -42,7 +42,7 @@ func main() {
 		fmt.Printf("\n\nWARNING: This terminal does not support colours, view will be very limited.\n\n")
 	}
 
-	session.AsciiArt()
+	session.ASCIIArt()
 
 	// log.SetFlags(log.LstdFlags | log.Lshortfile)
 	flag.Parse()

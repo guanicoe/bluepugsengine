@@ -6,7 +6,8 @@ import (
 	"github.com/evilsocket/islazy/tui"
 )
 
-func AsciiArt() {
+//ASCIIArt simple visual printing of the logo in terminal. Ran immediatly in main hence exported
+func ASCIIArt() {
 	asciiArt :=
 		`
 
