@@ -29,7 +29,7 @@ func fileExists(filename string) bool {
 }
 
 //RunInTerminal is the function that will handle the work when the program is called from terminal
-func RunInTerminal(fv flagArguments) {
+func RunInTerminal(fv FlagArguments) {
 
 	if len(fv.FileName) > 0 {
 		cleanFileName(&fv.FileName)

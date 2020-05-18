@@ -1,7 +1,7 @@
 package session
 
 //FlagArguments is a copy from the main package, this should be modified in order not to repeat
-type flagArguments struct {
+type FlagArguments struct {
 	TimeOut     int
 	TargetURL   string
 	HardLimit   int
