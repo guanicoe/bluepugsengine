@@ -153,12 +153,12 @@ func TestCleanURL(t *testing.T) {
 // }
 
 func TestContainsEXT(t *testing.T) {
-	pos := containsEXT(BlacklistEXT, "https://www.domain.com/pres.pdf")
+	pos := containsEXT(blacklistEXT, "https://www.domain.com/pres.pdf")
 	if !pos {
 		t.Errorf("Answer is %t", pos)
 	}
 
-	pos = containsEXT(BlacklistEXT, "https://www.domain.com/pres.hgf")
+	pos = containsEXT(blacklistEXT, "https://www.domain.com/pres.hgf")
 	if pos {
 		t.Errorf("Answer is %t", pos)
 	}
@@ -166,12 +166,12 @@ func TestContainsEXT(t *testing.T) {
 
 func TestContainsURL(t *testing.T) {
 
-	pos := containsURL(BacklistURL, "https://www.twitter.com/legal")
+	pos := containsURL(backlistURL, "https://www.twitter.com/legal")
 	if !pos {
 		t.Errorf("Answer is %t", pos)
 	}
 
-	pos = containsURL(BacklistURL, "https://www.bichromatics.com/")
+	pos = containsURL(backlistURL, "https://www.bichromatics.com/")
 	if pos {
 		t.Errorf("Answer is %t", pos)
 	}

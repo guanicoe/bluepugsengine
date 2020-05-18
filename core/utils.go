@@ -7,8 +7,8 @@ import (
 	"strings"
 )
 
-var BacklistURL = []string{"t.co", "whatsapp", "github", "bing", "twitter", "flicker", "turner", "youtu", "flickr", "commailto", "pinterest", "linkedin", "zencart", "wufoo", "youcanbook", "instagram"}
-var BlacklistEXT = []string{"jpeg", "jpg", "gif", "pdf", "png", "ppsx", "f4v", "mp3", "mp4", "exe", "dmg", "zip", "avi", "wmv", "pptx", "exar1", "edx", "epub"}
+var backlistURL = []string{"t.co", "whatsapp", "github", "bing", "twitter", "flicker", "turner", "youtu", "flickr", "commailto", "pinterest", "linkedin", "zencart", "wufoo", "youcanbook", "instagram"}
+var blacklistEXT = []string{"jpeg", "jpg", "gif", "pdf", "png", "ppsx", "f4v", "mp3", "mp4", "exe", "dmg", "zip", "avi", "wmv", "pptx", "exar1", "edx", "epub"}
 
 func getURLComp(targetURL string) (linkComp, error) {
 	u, err := url.Parse(targetURL)
@@ -133,9 +133,9 @@ func newValidURL(l string, j *jobData, s string) bool {
 		return false
 	case contains(j.scrapedSent, l):
 		return false
-	case containsEXT(BlacklistEXT, l):
+	case containsEXT(blacklistEXT, l):
 		return false
-	case containsURL(BacklistURL, l):
+	case containsURL(backlistURL, l):
 		return false
 	case !containsURL([]string{s}, l):
 		return false

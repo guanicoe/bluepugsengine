@@ -8,6 +8,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+//JobParam contains the job parameters to be sent to the core
 type JobParam struct {
 	TimeOut     int
 	TargetURL   string
@@ -16,6 +17,7 @@ type JobParam struct {
 	NWorkers    int
 }
 
+//JsonOutput is a struct that will contain the output that will be formatted in json before being sent out or saved
 type JsonOutput struct {
 	TargetURL       string
 	HardLimit       int

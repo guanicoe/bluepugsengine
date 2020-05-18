@@ -21,6 +21,7 @@ var (
 	PortZMQ     = flag.Int("p", 5155, "Specify the port you want the zmq server to listen on. Only works with -z.")
 )
 
+//FlagArguments is the original struct in the main that will contain the data to generate the parameters
 type FlagArguments struct {
 	TimeOut     int
 	TargetURL   string

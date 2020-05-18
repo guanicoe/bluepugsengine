@@ -57,7 +57,7 @@ func ZmqServer(port int) {
 			break
 		default:
 
-			param := FlagArguments{}
+			param := flagArguments{}
 			if err := json.Unmarshal([]byte(recv), &param); err != nil {
 
 				log.Warn(fmt.Sprintf("Received %s. Don't know what it means", recv))
