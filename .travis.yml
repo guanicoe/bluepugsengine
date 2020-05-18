@@ -1,0 +1,13 @@
+language: go
+go:
+  - "latest"
+
+# Includes
+linux_deps: &linux_deps
+  os: linux
+  dist: bionic
+  addons:
+    apt:
+      packages:
+        - libzmq3-dev
+        - libzmq
