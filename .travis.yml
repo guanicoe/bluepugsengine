@@ -6,8 +6,7 @@ go:
 linux_deps: &linux_deps
   os: linux
   dist: bionic
-  addons:
-    apt:
-      packages:
-        - libzmq3-dev
-        - libzmq
+  apt:
+    packages:
+      - libzmq3-dev
+      - libzmq
