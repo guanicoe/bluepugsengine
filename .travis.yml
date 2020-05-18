@@ -1,6 +1,6 @@
 language: go
 go:
-  - "latest"
+  - "stable"
 
 # Includes
 linux_deps: &linux_deps
