@@ -10,7 +10,7 @@ import (
 var BacklistURL = []string{"t.co", "whatsapp", "github", "bing", "twitter", "flicker", "turner", "youtu", "flickr", "commailto", "pinterest", "linkedin", "zencart", "wufoo", "youcanbook", "instagram"}
 var BlacklistEXT = []string{"jpeg", "jpg", "gif", "pdf", "png", "ppsx", "f4v", "mp3", "mp4", "exe", "dmg", "zip", "avi", "wmv", "pptx", "exar1", "edx", "epub"}
 
-func GetURLComp(targetURL string) (linkComp, error) {
+func getURLComp(targetURL string) (linkComp, error) {
 	u, err := url.Parse(targetURL)
 	if err != nil || len(targetURL) == 0 {
 
@@ -25,7 +25,7 @@ func GetURLComp(targetURL string) (linkComp, error) {
 	return r, nil
 }
 
-func CleanURL(urlComp linkComp, href string) string {
+func cleanURL(urlComp linkComp, href string) string {
 	var newHref string
 
 	switch {
@@ -63,15 +63,15 @@ func CleanURL(urlComp linkComp, href string) string {
 	return cleanedUp
 }
 
-func CleanURLWorker(dirty <-chan dirtyComp, clean chan<- string) {
+func cleanURLWorker(dirty <-chan dirtyComp, clean chan<- string) {
 
 	for d := range dirty {
-		clean <- CleanURL(d.urlStruct, d.href)
+		clean <- cleanURL(d.urlStruct, d.href)
 	}
 
 }
 
-func Unique(stringSlice []string) []string {
+func unique(stringSlice []string) []string {
 	keys := make(map[string]bool)
 	list := []string{}
 	for _, entry := range stringSlice {
@@ -83,7 +83,7 @@ func Unique(stringSlice []string) []string {
 	return list
 }
 
-func Contains(s []string, e string) bool {
+func contains(s []string, e string) bool {
 	for _, a := range s {
 		if a == e {
 			return true
@@ -92,7 +92,7 @@ func Contains(s []string, e string) bool {
 	return false
 }
 
-func ContainsURL(s []string, e string) bool {
+func containsURL(s []string, e string) bool {
 
 	for _, a := range s {
 		match, _ := regexp.MatchString(a, e)
@@ -104,7 +104,7 @@ func ContainsURL(s []string, e string) bool {
 	return false
 }
 
-func ContainsEXT(s []string, e string) bool {
+func containsEXT(s []string, e string) bool {
 	for _, a := range s {
 		if strings.HasSuffix(e, a) {
 			return true
@@ -116,7 +116,7 @@ func ContainsEXT(s []string, e string) bool {
 func setUniqueEmail(s *jobData) {
 	for _, emailMap := range s.emailList {
 		for email, _ := range emailMap {
-			if !Contains(s.emailListUnique, email) {
+			if !contains(s.emailListUnique, email) {
 				s.emailListUnique = append(s.emailListUnique, email)
 				fmt.Println(email)
 			}
@@ -129,15 +129,15 @@ func newValidURL(l string, j *jobData, s string) bool {
 	switch {
 	case len(l) == 0:
 		return false
-	case Contains(j.scrapedRecv, l):
+	case contains(j.scrapedRecv, l):
 		return false
-	case Contains(j.scrapedSent, l):
+	case contains(j.scrapedSent, l):
 		return false
-	case ContainsEXT(BlacklistEXT, l):
+	case containsEXT(BlacklistEXT, l):
 		return false
-	case ContainsURL(BacklistURL, l):
+	case containsURL(BacklistURL, l):
 		return false
-	case !ContainsURL([]string{s}, l):
+	case !containsURL([]string{s}, l):
 		return false
 	default:
 		return true

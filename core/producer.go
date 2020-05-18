@@ -222,7 +222,7 @@ func startProducer(param *JobParam) (JsonOutput, error) {
 
 	setUniqueEmail(&s) //Sending result pointer to get unique email list
 
-	msg := fmt.Sprintf("\nProducer has finished. Scraped %v urls | Found %v emails | Unique %v", s.scrapedRecvLen, len(s.emailList), len(s.emailListUnique))
+	msg := fmt.Sprintf("\nProducer has finished. Scraped %v urls | Found %v emails | unique %v", s.scrapedRecvLen, len(s.emailList), len(s.emailListUnique))
 	log.Info(msg)
 
 	//Prepare the output json struct to send as return

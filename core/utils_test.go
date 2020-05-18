@@ -6,12 +6,12 @@ import (
 	"testing"
 )
 
-type GetURLCompTest struct {
+type getURLCompTest struct {
 	url string
 	exp linkComp
 }
 
-var GetURLCompTestList = []GetURLCompTest{
+var getURLCompTestList = []getURLCompTest{
 	{"https://google.com",
 		linkComp{protocol: "https",
 			domain:  "google.com",
@@ -39,21 +39,21 @@ var GetURLCompTestList = []GetURLCompTest{
 }
 
 func TestGetURLComp(t *testing.T) {
-	for _, test := range GetURLCompTestList {
-		result, _ := GetURLComp(test.url)
+	for _, test := range getURLCompTestList {
+		result, _ := getURLComp(test.url)
 		if result != test.exp {
 			t.Fatal(result)
 		}
 	}
 }
 
-type CleanURLTest struct {
+type cleanURLTest struct {
 	url  linkComp
 	href string
 	exp  string
 }
 
-var CleanURLTestList = []CleanURLTest{
+var cleanURLTestList = []cleanURLTest{
 	{linkComp{protocol: "https",
 		domain:  "google.com",
 		path:    "",
@@ -123,8 +123,8 @@ var CleanURLTestList = []CleanURLTest{
 }
 
 func TestCleanURL(t *testing.T) {
-	for _, test := range CleanURLTestList {
-		result := CleanURL(test.url, test.href)
+	for _, test := range cleanURLTestList {
+		result := cleanURL(test.url, test.href)
 		if result != test.exp {
 			fmt.Println(result)
 			t.Fatal(test.href)
@@ -153,12 +153,12 @@ func TestCleanURL(t *testing.T) {
 // }
 
 func TestContainsEXT(t *testing.T) {
-	pos := ContainsEXT(BlacklistEXT, "https://www.domain.com/pres.pdf")
+	pos := containsEXT(BlacklistEXT, "https://www.domain.com/pres.pdf")
 	if !pos {
 		t.Errorf("Answer is %t", pos)
 	}
 
-	pos = ContainsEXT(BlacklistEXT, "https://www.domain.com/pres.hgf")
+	pos = containsEXT(BlacklistEXT, "https://www.domain.com/pres.hgf")
 	if pos {
 		t.Errorf("Answer is %t", pos)
 	}
@@ -166,17 +166,17 @@ func TestContainsEXT(t *testing.T) {
 
 func TestContainsURL(t *testing.T) {
 
-	pos := ContainsURL(BacklistURL, "https://www.twitter.com/legal")
+	pos := containsURL(BacklistURL, "https://www.twitter.com/legal")
 	if !pos {
 		t.Errorf("Answer is %t", pos)
 	}
 
-	pos = ContainsURL(BacklistURL, "https://www.bichromatics.com/")
+	pos = containsURL(BacklistURL, "https://www.bichromatics.com/")
 	if pos {
 		t.Errorf("Answer is %t", pos)
 	}
 
-	pos = ContainsURL([]string{""}, "https://www.bichromatics.com/")
+	pos = containsURL([]string{""}, "https://www.bichromatics.com/")
 	if pos {
 		t.Errorf("Answer is %t", pos)
 	}
@@ -184,12 +184,12 @@ func TestContainsURL(t *testing.T) {
 
 func TestContains(t *testing.T) {
 	var testList = []string{"https://www.bichromatics.com/calculator", "https://www.bichromatics.com/calculator/download_file", "https://www.bichromatics.com/calculator", "https://www.bichromatics.com/calculator", "https://www.bichromatics.com/calculator/download_file", "https://www.bichromatics.com/calculator"}
-	pos := Contains(testList, "https://www.bichromatics.com/calculator")
+	pos := contains(testList, "https://www.bichromatics.com/calculator")
 	if !pos {
 		t.Errorf("Answer is %t", pos)
 	}
 
-	pos = Contains(testList, "d")
+	pos = contains(testList, "d")
 	if pos {
 		t.Errorf("Answer is %t", pos)
 	}
@@ -198,7 +198,7 @@ func TestContains(t *testing.T) {
 func TestUnique(t *testing.T) {
 	var testList = []string{"a", "a", "c"}
 	var expected = []string{"a", "c"}
-	pos := Unique(testList)
+	pos := unique(testList)
 	bol := reflect.DeepEqual(pos, expected)
 	if !bol {
 		t.Errorf("Answer is %t, %s", bol, pos)

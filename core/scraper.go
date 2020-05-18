@@ -34,7 +34,7 @@ func getLinks(resp string, urlComp linkComp) []string {
 	clean := make(chan string, len(links))
 
 	for i := 0; i < len(links); i++ {
-		go CleanURLWorker(dirty, clean)
+		go cleanURLWorker(dirty, clean)
 	}
 
 	for _, l := range links {
@@ -52,7 +52,7 @@ func getLinks(resp string, urlComp linkComp) []string {
 	}
 	close(clean)
 
-	cleanLinks = Unique(cleanLinks)
+	cleanLinks = unique(cleanLinks)
 
 	return cleanLinks
 }
@@ -83,7 +83,7 @@ type timeOutR struct {
 func scrap(targetURL string) ([]string, []emailSource) {
 
 	c1 := make(chan timeOutR)
-	urlComp, err := GetURLComp(targetURL)
+	urlComp, err := getURLComp(targetURL)
 	if err != nil {
 		message := fmt.Sprintf("Error when parsing URL: %s %s", targetURL, err)
 		log.Debug(message)
