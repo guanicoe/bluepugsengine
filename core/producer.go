@@ -122,7 +122,7 @@ func processResult(ctx context.Context, r workOutput, s *jobData) {
 	for _, l := range r.FoundLinks {
 
 		if newValidURL(l, s, s.paramPointer.DomainScope) {
-			if s.scrapedSentLen <= s.limit {
+			if s.scrapedSentLen <= s.paramPointer.HardLimit {
 				s.unscrapedLen++
 				s.unscrapedURL <- l
 
@@ -189,7 +189,7 @@ func startProducer(param *JobParam) (JsonOutput, error) {
 			case s.scrapedRecvLen >= s.paramPointer.HardLimit:
 				// in case we hit hard limit, we exist the loop
 				return
-			case s.scrapedRecvLen == s.scrapedSentLen && time.Since(start) > time.Duration(20)*time.Second:
+			case s.scrapedRecvLen == s.scrapedSentLen && time.Since(start) > time.Duration(30)*time.Second:
 				// if we received the same number as we sent and that we waited a bit to make sure the workers are not working, we exit
 				return
 			default:
