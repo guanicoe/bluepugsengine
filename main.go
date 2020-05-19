@@ -18,7 +18,7 @@ var (
 	NWorkers    = flag.Int("w", 100, "Number of pugs to go to work.")
 	FileName    = flag.String("o", "", "Name of output file.")
 	StartZMQ    = flag.Bool("z", false, "Starting ZMQ server, this is for automation needs")
-	CheckEmails = flag.Bool("c", false, "Do a domain check on the found emails.")
+	CheckEmails = flag.Bool("c", false, "Do a domain check on the found emails. (Nightly)")
 	PortZMQ     = flag.Int("p", 5155, "Specify the port you want the zmq server to listen on. Only works with -z.")
 )
 
