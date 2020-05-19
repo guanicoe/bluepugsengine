@@ -75,6 +75,22 @@ func getEmails(html, sourceUrl string) []emailSource {
 
 }
 
+func validateEmail(e string) bool {
+	email, err := emailaddress.Parse(e)
+	if err != nil {
+		msg := fmt.Sprint("error whilst passing emails")
+		log.Debug(msg)
+		return false
+	}
+	err = email.ValidateHost()
+	if err != nil {
+		msg := fmt.Sprint("invalid host")
+		log.Debug(msg)
+		return false
+	}
+	return true
+}
+
 type timeOutR struct {
 	link   []string
 	emails []emailSource

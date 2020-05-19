@@ -117,8 +117,15 @@ func setUniqueEmail(s *jobData) {
 	for _, emailMap := range s.emailList {
 		for email, _ := range emailMap {
 			if !contains(s.emailListUnique, email) {
+
 				s.emailListUnique = append(s.emailListUnique, email)
-				fmt.Println(email)
+				if s.paramPointer.CheckEmails {
+					valid := validateEmail(email)
+					fmt.Println(email, "-", valid)
+				} else {
+					fmt.Println(email, "- not checked")
+				}
+
 			}
 		}
 

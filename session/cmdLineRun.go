@@ -51,6 +51,7 @@ func RunInTerminal(fv FlagArguments) {
 		HardLimit:   fv.HardLimit,
 		DomainScope: fv.DomainScope,
 		NWorkers:    fv.NWorkers,
+		CheckEmails: fv.CheckEmails,
 	}
 
 	result := core.LaunchJob(param)

@@ -15,6 +15,7 @@ type JobParam struct {
 	HardLimit   int
 	DomainScope string
 	NWorkers    int
+	CheckEmails bool
 }
 
 //JsonOutput is a struct that will contain the output that will be formatted in json before being sent out or saved
