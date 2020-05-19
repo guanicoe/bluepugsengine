@@ -10,7 +10,7 @@ go build -o bluePugs src/*.go && ./bluePugs
 
 <p align="center">
   <img alt="BluePugs" src="https://bluepugs.ovh/static/img/bluepugs_blue.svg" height="100" />
-  
+
 </p>
 
 
@@ -20,12 +20,15 @@ go build -o bluePugs src/*.go && ./bluePugs
 [![Go Report Card](https://goreportcard.com/badge/github.com/guanicoe/bluepugsengine)](https://goreportcard.com/report/github.com/guanicoe/bluepugsengine)
 
 
-# BluePugsEngine
+# BluePugsEngine (BETA)
 
 ## Introduction
 
 > After a first try in python using multiprocessing, here's is the new Blue Pugs. Engine. A 100% Go program made to rapidly scan website for emails.The initial idea was to make theHarvester faster, but someone had already used threading. Blue Pugs takes advantage of heavy co-routines it order to send thousands of pugs (workers) on different websites.
 
+## Beta
+
+This program is basically in beta, that is that it basically works,but it needs further testing. If you find any bugs, orif you want a special feature, you can just submit an issue.
 <!-- ## Code Samples
 
 > You've gotten their attention in the introduction, now show a few code examples. So they get a visualization and as a bonus, make them copy/paste friendly. -->
@@ -55,5 +58,5 @@ To run you simply specify the URL, and the scope of the search, that usually is 
 If you need to build the program, you should be able, as long as you have go installed, to type
 
 ```sh
-go build -o bluepugsengine 
+go build -o bluepugsengine
 ```
