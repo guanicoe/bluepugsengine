@@ -18,19 +18,19 @@ var (
 	NWorkers    = flag.Int("w", 100, "Number of pugs to go to work.")
 	FileName    = flag.String("o", "", "Name of output file.")
 	StartZMQ    = flag.Bool("z", false, "Starting ZMQ server, this is for automation needs")
+	CheckEmails = flag.Bool("c", false, "Do a domain check on the found emails. (Nightly)")
 	PortZMQ     = flag.Int("p", 5155, "Specify the port you want the zmq server to listen on. Only works with -z.")
 )
 
 //FlagArguments is the original struct in the main that will contain the data to generate the parameters
-type FlagArguments struct {
-	TimeOut     int
-	TargetURL   string
-	HardLimit   int
-	DomainScope string
-	NWorkers    int
-	FileName    string
-	StartZMQ    bool
-}
+// type FlagArguments struct {
+// 	TimeOut     int
+// 	TargetURL   string
+// 	HardLimit   int
+// 	DomainScope string
+// 	NWorkers    int
+// 	FileName    string
+// }
 
 /*
 Main function of Blue Pugs. In order to use colour feedback, we first check if tui can work.
@@ -48,15 +48,14 @@ func main() {
 	// log.SetFlags(log.LstdFlags | log.Lshortfile)
 	flag.Parse()
 
-	flagValues := FlagArguments{
-		TimeOut:     *TimeOut,
-		TargetURL:   *TargetURL,
-		HardLimit:   *HardLimit,
-		DomainScope: *DomainScope,
-		NWorkers:    *NWorkers,
-		FileName:    *FileName,
-		StartZMQ:    *StartZMQ,
-	}
+	// flagValues := FlagArguments{
+	// 	TimeOut:     *TimeOut,
+	// 	TargetURL:   *TargetURL,
+	// 	HardLimit:   *HardLimit,
+	// 	DomainScope: *DomainScope,
+	// 	NWorkers:    *NWorkers,
+	// 	FileName:    *FileName,
+	// }
 
 	//  Socket to talk to server
 	switch {
@@ -66,7 +65,13 @@ func main() {
 	case *TargetURL == "":
 		log.Fatal(tui.Wrap(tui.BACKRED, "No target urls where given. Use -h or --help for help."))
 	default:
-		session.RunInTerminal(session.FlagArguments(flagValues))
+		session.RunInTerminal(session.FlagArguments{TimeOut: *TimeOut,
+			TargetURL:   *TargetURL,
+			HardLimit:   *HardLimit,
+			DomainScope: *DomainScope,
+			NWorkers:    *NWorkers,
+			FileName:    *FileName,
+			CheckEmails: *CheckEmails})
 	}
 
 }

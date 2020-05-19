@@ -8,5 +8,5 @@ type FlagArguments struct {
 	DomainScope string
 	NWorkers    int
 	FileName    string
-	StartZMQ    bool
+	CheckEmails bool
 }
