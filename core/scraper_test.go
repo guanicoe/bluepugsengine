@@ -132,25 +132,27 @@ func TestCleanURL(t *testing.T) {
 	}
 }
 
-// type CleanFileNameTest struct {
-// 	str string
-// 	exp string
-// }
-//
-// var CleanFileNameTestList = []CleanFileNameTest{
-// 	{"a.json", "a.json"},
-// }
-//
-// func TestCleanFileName(t *testing.T) {
-// 	for _, test := range CleanFileNameTestList {
-// 		// str := &test.str
-// 		CleanFileName(&test.str)
-// 		if test.str != test.exp {
-// 			fmt.Println(result)
-// 			t.Fatal(test.str)
-// 		}
-// 	}
-// }
+type CleanEmailTest struct {
+	str string
+	exp string
+}
+
+var CleanEmailTestList = []CleanEmailTest{
+	{"%20george.butterfield@foxtv.com", "george.butterfield@foxtv.com"},
+	{"u003Egeorge.butterfield@foxtv.com", "george.butterfield@foxtv.com"},
+	{"george.butterfield@foxtv.com", "george.butterfield@foxtv.com"},
+}
+
+func TestCleanEmail(t *testing.T) {
+	for _, test := range CleanEmailTestList {
+		// str := &test.str
+		result := cleanEmail(test.str)
+		if result != test.exp {
+			fmt.Println("result", result, "expected", test.exp)
+			t.Fatal(test.str)
+		}
+	}
+}
 
 func TestContainsEXT(t *testing.T) {
 	pos := containsEXT(blacklistEXT, "https://www.domain.com/pres.pdf")
