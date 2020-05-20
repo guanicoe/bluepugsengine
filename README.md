@@ -28,7 +28,7 @@ go build -o bluePugs src/*.go && ./bluePugs
 
 <p align="center">
 ![dirty benchmark](https://github.com/guanicoe/bluepugsengine/blob/master/assets/quick_benchmarks.png)
-</p>
+
 
 ## Beta
 
@@ -38,9 +38,9 @@ This program is basically in beta, that is that it basically works,but it needs 
 > You've gotten their attention in the introduction, now show a few code examples. So they get a visualization and as a bonus, make them copy/paste friendly. -->
 
 ## Screenshot
-
+<p align="center">
 ![screenshot](https://github.com/guanicoe/bluepugsengine/blob/master/assets/Screenshot%20from%202020-05-20%2013-51-47.png)
-
+</p>
 ## Installation
 
 The only dependency you need to install is libzmq
