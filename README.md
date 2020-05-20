@@ -37,7 +37,7 @@ This program is basically in beta, that is that it basically works,but it needs 
 
 ![screenshot](https://github.com/guanicoe/bluepugsengine/blob/master/assets/Screenshot%20from%202020-05-20%2013-51-47.png)
 
-![dirty benchmark](https://github.com/guanicoe/bluepugsengine/blob/master/assets/quick_benchmark.png)
+![dirty benchmark](https://github.com/guanicoe/bluepugsengine/blob/master/assets/quick_benchmarks.png)
 
 ## Installation
 
