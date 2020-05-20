@@ -26,7 +26,7 @@ go build -o bluePugs src/*.go && ./bluePugs
 > After a first try in python using multiprocessing, here's is the new Blue Pugs. Engine. A 100% Go program made to rapidly scan website for emails.The initial idea was to make theHarvester faster, but someone had already used threading. Blue Pugs takes advantage of heavy co-routines it order to send thousands of pugs (workers) on different websites.
 
 <p align="center">
-<img alt="dirty benchmark" src="https://github.com/guanicoe/bluepugsengine/blob/master/assets/quick_benchmarks.png"/>
+<img alt="dirty benchmark" src="https://github.com/guanicoe/bluepugsengine/blob/master/assets/quick_benchmark.png"/>
 <!-- ![dirty benchmark](https://github.com/guanicoe/bluepugsengine/blob/master/assets/quick_benchmarks.png) -->
 </p>
 
