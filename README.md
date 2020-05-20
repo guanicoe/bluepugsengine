@@ -28,7 +28,7 @@ go build -o bluePugs src/*.go && ./bluePugs
 
 <p align="center">
 ![dirty benchmark](https://github.com/guanicoe/bluepugsengine/blob/master/assets/quick_benchmarks.png)
-
+</p>
 
 ## Beta
 
