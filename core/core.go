@@ -1,7 +1,6 @@
 package core
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/evilsocket/islazy/tui"
@@ -27,6 +26,7 @@ type JsonOutput struct {
 	NmbScraped      int
 	NmbUniqueEmails int
 	UniqueEmails    []string
+	ValidEmails     []EmailValid
 	NmbEmails       int
 	EmailList       []emailSource
 	TimeStarted     time.Time
@@ -58,9 +58,8 @@ func LaunchJob(p JobParam) JsonOutput {
 	output.TimeFinished = endTime
 	output.TimeDeltaMS = timeDelta.Milliseconds()
 
-	log.Info(output.UniqueEmails)
-	msg = tui.Green(fmt.Sprintf("Finished job at %s - It took %s", endTime, timeDelta))
-	log.Info(msg)
+	// msg = tui.Green(fmt.Sprintf("Finished job at %s - It took %s", endTime, timeDelta))
+	// log.Info(msg)
 
 	return output
 }

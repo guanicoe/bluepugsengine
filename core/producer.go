@@ -21,6 +21,7 @@ type jobData struct {
 	scrapedRecv     []string
 	scrapedRecvLen  int
 	emailList       []emailSource
+	EmailValid      []EmailValid
 	emailListUnique []string
 	continueProd    bool
 	err             error
@@ -122,7 +123,7 @@ func processResult(ctx context.Context, r workOutput, s *jobData) {
 	for _, l := range r.FoundLinks {
 
 		if newValidURL(l, s, s.paramPointer.DomainScope) {
-			if s.scrapedSentLen <= s.paramPointer.HardLimit {
+			if s.scrapedRecvLen <= s.paramPointer.HardLimit {
 				s.unscrapedLen++
 				s.unscrapedURL <- l
 
@@ -164,6 +165,7 @@ func startProducer(param *JobParam) (JsonOutput, error) {
 		scrapedRecv:     []string{},
 		scrapedRecvLen:  0,
 		emailList:       []emailSource{},
+		EmailValid:      []EmailValid{},
 		emailListUnique: []string{},
 		continueProd:    true,
 		err:             nil,
@@ -200,7 +202,7 @@ func startProducer(param *JobParam) (JsonOutput, error) {
 				case r := <-s.Result: // listening on result channel for workers' output
 					s.scrapedRecv = append(s.scrapedRecv, r.InitialURL) //We add turl the worker scraped to our receive slice
 					s.scrapedRecvLen++                                  // and we increment the length
-					msg := fmt.Sprintf("Unscraped %v | scrapedRecv %v | scrapedSent %v | emails found %v               ", s.unscrapedLen, s.scrapedRecvLen, s.scrapedSentLen, len(s.emailList))
+					msg := fmt.Sprintf("Sent %v | Received %v | emails found %v", s.scrapedSentLen, s.scrapedRecvLen, len(s.emailList))
 					fmt.Printf("\r%s", msg) // lazy printing of progression on terminal
 
 					processResult(ctx, r, &s) // we send result to the process function
@@ -222,8 +224,8 @@ func startProducer(param *JobParam) (JsonOutput, error) {
 
 	setUniqueEmail(&s) //Sending result pointer to get unique email list
 
-	msg := fmt.Sprintf("\nProducer has finished. Scraped %v urls | Found %v emails | unique %v", s.scrapedRecvLen, len(s.emailList), len(s.emailListUnique))
-	log.Info(msg)
+	// msg := fmt.Sprintf("Producer has finished. Scraped %v urls | Found %v emails | unique %v", s.scrapedRecvLen, len(s.emailList), len(s.emailListUnique))
+	// log.Info(msg)
 
 	//Prepare the output json struct to send as return
 	output := JsonOutput{
@@ -231,8 +233,9 @@ func startProducer(param *JobParam) (JsonOutput, error) {
 		HardLimit:       param.HardLimit,
 		NmbWorkers:      param.NWorkers,
 		DomainScope:     param.DomainScope,
-		NmbScraped:      s.scrapedSentLen,
+		NmbScraped:      s.scrapedRecvLen,
 		NmbUniqueEmails: len(s.emailListUnique),
+		ValidEmails:     s.EmailValid,
 		UniqueEmails:    s.emailListUnique,
 		NmbEmails:       len(s.emailList),
 		EmailList:       s.emailList,

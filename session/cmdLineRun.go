@@ -53,9 +53,10 @@ func RunInTerminal(fv FlagArguments) {
 		NWorkers:    fv.NWorkers,
 		CheckEmails: fv.CheckEmails,
 	}
-
+	printParam(param)
 	result := core.LaunchJob(param)
 
+	printTable(result)
 	if len(fv.FileName) > 0 {
 
 		jsonResult, _ := json.MarshalIndent(result, "", " ")
