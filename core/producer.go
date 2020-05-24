@@ -202,6 +202,7 @@ func startProducer(param *JobParam) (JsonOutput, error) {
 				case r := <-s.Result: // listening on result channel for workers' output
 					s.scrapedRecv = append(s.scrapedRecv, r.InitialURL) //We add turl the worker scraped to our receive slice
 					s.scrapedRecvLen++                                  // and we increment the length
+					// fmt.Println(r)
 					msg := fmt.Sprintf("Sent %v | Received %v | emails found %v", s.scrapedSentLen, s.scrapedRecvLen, len(s.emailList))
 					fmt.Printf("\r%s", msg) // lazy printing of progression on terminal
 

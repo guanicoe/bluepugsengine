@@ -64,6 +64,10 @@ func cleanURL(urlComp linkComp, href string) string {
 		newHref = urlComp.rootURL
 	case strings.HasPrefix(href, "?"):
 		newHref = strings.Join([]string{urlComp.rootURL, href}, "/")
+	case strings.HasSuffix(href, ".html"):
+		newHref = strings.Join([]string{urlComp.rootURL, href}, "/")
+	case strings.HasSuffix(href, ".htm"):
+		newHref = strings.Join([]string{urlComp.rootURL, href}, "/")
 	case strings.HasPrefix(href, "mailto:"):
 		newHref = urlComp.rootURL
 	case strings.HasPrefix(href, "javascript:"):
